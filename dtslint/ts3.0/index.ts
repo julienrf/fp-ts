@@ -22,6 +22,7 @@ import * as Mon from '../../src/Monoid'
 import * as Se from '../../src/Setoid'
 import * as SM from '../../src/StrMap'
 import * as Fo from '../../src/Foldable'
+import * as Fu from '../../src/function'
 
 const double = (n: number) => n * 2
 
@@ -253,3 +254,14 @@ const Mon4 = Mon.getDictionaryMonoid<Keys, number>(S.semigroupSum) // $ExpectTyp
 //
 
 const toUnfoldable3 = SM.toUnfoldable(A.array)(new SM.StrMap({ a: 1 })) // $ExpectType [string, number][]
+
+//
+// function
+//
+
+// tuple
+
+Fu.tuple() // $ExpectType []
+Fu.tuple(1) // $ExpectType [number]
+Fu.tuple(1, 'a') // $ExpectType [number, string]
+Fu.tuple(1, 'a', true) // $ExpectType [number, string, boolean]
