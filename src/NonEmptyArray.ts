@@ -43,8 +43,6 @@ export type URI = typeof URI
  * @since 1.0.0
  */
 export class NonEmptyArray<A> {
-  readonly _A!: A
-  readonly _URI!: URI
   constructor(readonly head: A, readonly tail: Array<A>) {}
 
   /**

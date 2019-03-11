@@ -25,9 +25,6 @@ export type Free<F, A> = Pure<F, A> | Impure<F, A, any>
 
 export class Pure<F, A> {
   readonly _tag: 'Pure' = 'Pure'
-  readonly _A!: A
-  readonly _L!: F
-  readonly _URI!: URI
   constructor(readonly value: A) {}
   map<B>(f: (a: A) => B): Free<F, B> {
     return new Pure(f(this.value))
@@ -60,9 +57,6 @@ export class Pure<F, A> {
 
 export class Impure<F, A, X> {
   readonly _tag: 'Impure' = 'Impure'
-  readonly _A!: A
-  readonly _L!: F
-  readonly _URI!: URI
   constructor(readonly fx: HKT<F, X>, readonly f: (x: X) => Free<F, A>) {}
   map<B>(f: (a: A) => B): Free<F, B> {
     return new Impure(this.fx, x => this.f(x).map(f))
